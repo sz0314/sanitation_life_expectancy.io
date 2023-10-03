@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Correlation Between Sanitation and Life Expectancy",
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/sz0314/life_expansion/main/life%20expectancy.csv",
+    "format": {"type": "csv"}
+  },
+  "layer": [
+    {
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "x": {
+          "field": "Sanitation",
+          "type": "quantitative",
+          "scale": {"domain": [0, 100]}
+        },
+        "y": {
+          "field": "Life Expectancy World Bank",
+          "type": "quantitative",
+          "scale": {"domain": [40, 100]}
+        }
+      },
+      "transform": [
+        {"filter": "datum['Sanitation'] > 0"},
+        {"filter": "datum['Life Expectancy World Bank'] >= 20"}
+      ]
+    }
+  ],
+  "config": {}
+}
